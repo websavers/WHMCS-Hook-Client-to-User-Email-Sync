@@ -36,8 +36,9 @@ function sync_client_to_user($vars) {
     if ($newmail != $oldmail) {
 
         // Ensure the user logged in is the owner of the account
-        $user = CurrentUser::user();
-        $client = CurrentUser::client();
+        $currentUser = new CurrentUser;
+        $user = $currentUser->user();
+        $client = $currentUser->client();
         if ($user && $client && $user->isOwner($client)) {
 
             // find the user account
